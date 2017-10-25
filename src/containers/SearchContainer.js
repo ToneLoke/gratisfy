@@ -1,9 +1,15 @@
 import React, {Component} from 'react'
 import SearchForm from '../presentational/SearchForm'
+import FilterButton from '../presentational/FilterButton'
 
 class SearchContainer extends Component {
   render () {
-    return <SearchForm />
+    return (
+      <div>
+        <SearchForm />
+        <FilterButton />
+      </div>
+    )
   }
 }
 

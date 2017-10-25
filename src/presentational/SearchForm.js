@@ -8,8 +8,8 @@ const SearchForm = () => {
   return (
     <div>
       <TextField
-        hintText='Full width'
-        fullWidth
+        hintText='Search for an Item'
+        
       />
       <RaisedButton
         target='_blank'
