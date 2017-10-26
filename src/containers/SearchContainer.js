@@ -5,19 +5,12 @@ import FilterButton from '../presentational/FilterButton'
 class SearchContainer extends Component {
   constructor () {
     super()
-    console.log('constructor fired')
   }
-  componentWillMount () {
-    console.log('will mount')
-  }
-  componentDidMount () {
-    console.log('did mount')
-  }
+
   render () {
-    console.log('rendering component')
     return (
       <div>
-        <SearchForm />
+        <SearchForm handleClick={this.props.onSearch} />
         <FilterButton />
       </div>
     )

@@ -11,6 +11,9 @@ class ExchangeContainer extends Component {
     items: [],
     categories: [],
   }
+  searchItems(keyword){
+    //update the items array based on the keyword
+  }
   componentWillMount(){
     fetch('items.json')
       .then( res => res.json())
@@ -18,11 +21,17 @@ class ExchangeContainer extends Component {
         console.log("fetching", items)
         this.setState({items})
       })
+      console.log('will mount')
+  }
+
+  componentDidMount () {
+    console.log('did mount')
   }
   render () {
+    console.log('rendering component')
     return (
       <MuiThemeProvider >
-        <SearchContainer />
+        <SearchContainer onSearch={this.searchItems}/>
         <ItemsTradeContainer items={this.state.items}/>
       </MuiThemeProvider>
     )

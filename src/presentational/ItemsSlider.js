@@ -19,59 +19,18 @@ const styles = {
   }
 }
 
-const tilesData = [
-  {
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAaSeQR7Uc3XOaVVkm0u5WYr6eP10nPeTPi1EDybmqzN_aCISZ',
-    title: 'Breakfast',
-    author: 'jill111'
-  },
-  {
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAaSeQR7Uc3XOaVVkm0u5WYr6eP10nPeTPi1EDybmqzN_aCISZ',
-    title: 'Tasty burger',
-    author: 'pashminu'
-  },
-  {
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAaSeQR7Uc3XOaVVkm0u5WYr6eP10nPeTPi1EDybmqzN_aCISZ',
-    title: 'Camera',
-    author: 'Danson67'
-  },
-  {
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAaSeQR7Uc3XOaVVkm0u5WYr6eP10nPeTPi1EDybmqzN_aCISZ',
-    title: 'Morning',
-    author: 'fancycrave1'
-  },
-  {
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAaSeQR7Uc3XOaVVkm0u5WYr6eP10nPeTPi1EDybmqzN_aCISZ',
-    title: 'Hats',
-    author: 'Hans'
-  },
-  {
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAaSeQR7Uc3XOaVVkm0u5WYr6eP10nPeTPi1EDybmqzN_aCISZ',
-    title: 'Hats',
-    author: 'Hans'
-  },
-  {
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAaSeQR7Uc3XOaVVkm0u5WYr6eP10nPeTPi1EDybmqzN_aCISZ',
-    title: 'Hats',
-    author: 'Hans'
-  }
-]
-
-/**
- * This example demonstrates the horizontal scrollable single-line grid list of images.
- */
-const ItemsList = () => (
+const ItemsList = (props) => (
   <div style={styles.root}>
     <GridList style={styles.gridList} cols={2.2}>
-      {tilesData.map((tile) => (
+      {props.items.map((item) => (
         <GridTile
-          key={tile.img}
-          title={tile.title}
+          key={item.imageURL}
+          title={item.name}
           actionIcon={<IconButton><StarBorder color='rgb(0, 188, 212)' /></IconButton>}
           titleStyle={styles.titleStyle}
           titleBackground='linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)'
         >
-          <img src={tile.img} />
+          <img src={item.imageURL} />
         </GridTile>
       ))}
     </GridList>
