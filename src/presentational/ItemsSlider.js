@@ -44,6 +44,16 @@ const tilesData = [
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAaSeQR7Uc3XOaVVkm0u5WYr6eP10nPeTPi1EDybmqzN_aCISZ',
     title: 'Hats',
     author: 'Hans'
+  },
+  {
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAaSeQR7Uc3XOaVVkm0u5WYr6eP10nPeTPi1EDybmqzN_aCISZ',
+    title: 'Hats',
+    author: 'Hans'
+  },
+  {
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAaSeQR7Uc3XOaVVkm0u5WYr6eP10nPeTPi1EDybmqzN_aCISZ',
+    title: 'Hats',
+    author: 'Hans'
   }
 ]
 

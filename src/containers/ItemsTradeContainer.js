@@ -7,14 +7,20 @@ const style = {
   width: '50%'
 }
 
-const ItemsTradeContainer = () => {
-  return (
-    <div style={style}>
-      <ItemDetail />
-      <TradeButton />
-      <ItemsList />
-    </div>
-  )
+class ItemsTradeContainer extends Component {
+  state = {
+
+  }
+  render(){
+    console.log("getting props from exchange container", this.props)
+    return (
+      <div style={style}>
+        <ItemDetail />
+        <TradeButton />
+        <ItemsList />
+      </div>
+    )
+  }
 }
 
 export default ItemsTradeContainer

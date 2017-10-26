@@ -38,6 +38,7 @@ export default class FilterButton extends Component {
     const {values} = this.state;
     return (
       <SelectField
+        autoWidth={true}
         multiple={true}
         hintText="Select a category"
         value={values}
