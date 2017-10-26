@@ -8,16 +8,29 @@ const style = {
 }
 
 class ItemsTradeContainer extends Component {
-  state = {
-
+  constructor (props) {
+    super()
+    this.state = {
+      selectedItem: {},
+      filteredItems: []
+    }
   }
-  render(){
-    console.log("getting props from exchange container", this.props)
+  componentWillRecieveProps () {
+    console.log('getting props from exchange')
+  }
+  componentWillMount () {
+    let newState = {
+      selectedItem: this.props.items[0],
+      filteredItems: this.props.items.slice(1, this.props.items.length)
+    }
+    this.setState({...newState})
+  }
+  render () {
     return (
       <div style={style}>
-        <ItemDetail />
+        <ItemDetail item={this.state.selectedItem} />
         <TradeButton />
-        <ItemsList />
+        <ItemsList items={this.state.filteredItems} />
       </div>
     )
   }

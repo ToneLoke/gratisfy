@@ -2,10 +2,10 @@ import React from 'react'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 
-const ItemDetail = () => (
+const ItemDetail = (props) => (
   <Card>
     <CardHeader
-      title='Toneloke'
+      title={props.name}
       subtitle='Buy my trident'
       avatar='https://avatars0.githubusercontent.com/u/10687151?s=460&v=4'
     />
