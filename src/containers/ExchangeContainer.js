@@ -12,12 +12,8 @@ class ExchangeContainer extends Component {
     categories: [],
   }
   searchItems = (keyword) => {
-    console.log("searching", keyword, this.state.items)
-    // "champ match" => [champ, match] => champ|match
     let keywordRegex = keyword
-    if(keyword.split(' ').length > 1 ){
-      keywordRegex = keyword.split(' ').join('|')
-    }
+    if(keyword.split(' ').length > 1 ) keywordRegex = keyword.split(' ').join('|')
     keywordRegex = new RegExp(keywordRegex, "i")
     let items = this.state.items.filter( (item) =>  item.description.match(keywordRegex) ? true : false )
     this.setState({items})

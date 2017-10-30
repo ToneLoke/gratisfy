@@ -5,7 +5,7 @@
     "price": 1000,
     "color": "black",
     "imageURL": "http://cdn.playbuzz.com/cdn/e09fe267-0bba-4e39-9343-84eddacc2a93/ecc34aa6-5be5-4c9a-9228-f9ee576dc45a.png",
-    "categories": ["Office", "Home"]
+    "categories": ["Office", "Home", "electronics"]
 
   },
   {
@@ -13,7 +13,8 @@
     "description": "Only one of its kind, may bring bad spirits",
     "price": 999999,
     "color": "gold",
-    "imageURL": "https://mises.org/sites/default/files/styles/social_media_1200_x_1200/public/static-page/img/lord_of_the_rings_ring.png?itok=6gNxCuOR"
+    "imageURL": "https://mises.org/sites/default/files/styles/social_media_1200_x_1200/public/static-page/img/lord_of_the_rings_ring.png?itok=6gNxCuOR",
+    "categories": ["Hygiene", "electronics", "tools"]
 
   },
   {
@@ -21,7 +22,8 @@
     "description": "If superman is giving you a hard time try this out",
     "price": 5,
     "color": "green",
-    "imageURL": "https://img1.etsystatic.com/034/1/9492703/il_fullxfull.659048499_j4xf.jpg"
+    "imageURL": "https://img1.etsystatic.com/034/1/9492703/il_fullxfull.659048499_j4xf.jpg",
+    "categories": ["accessories", "tools"]
 
   }
 ]

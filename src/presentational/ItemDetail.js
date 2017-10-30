@@ -2,8 +2,8 @@ import React from 'react'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 
-const ItemDetail = (props) => (
-  <Card>
+const ItemDetail = (props) => {
+  return props.item ? <Card>
     <CardHeader
       title='toneloke'
       subtitle='Buy my trident'
@@ -19,6 +19,7 @@ const ItemDetail = (props) => (
       {props.item.description}
     </CardText>
   </Card>
-)
+  : <div><h2> No item found matching your search term</h2></div>
+}
 
 export default ItemDetail

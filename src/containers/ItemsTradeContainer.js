@@ -15,6 +15,7 @@ class ItemsTradeContainer extends Component {
       filteredItems: []
     }
   }
+
   componentWillReceiveProps (nextProps) {
     console.log('getting props from exchange')
     let newState = {
@@ -28,7 +29,7 @@ class ItemsTradeContainer extends Component {
     return (
       <div style={style}>
         <ItemDetail item={this.state.selectedItem} />
-        <TradeButton />
+        {/* { this.state.selectedItem ? <ItemDetail item={this.state.selectedItem} /> : <h2>No Items Found matching your search</h2> } */}
         <ItemsList items={this.state.filteredItems} />
       </div>
     )
