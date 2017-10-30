@@ -11,8 +11,16 @@ class ExchangeContainer extends Component {
     items: [],
     categories: [],
   }
-  searchItems(keyword){
-    //update the items array based on the keyword
+  searchItems = (keyword) => {
+    console.log("searching", keyword, this.state.items)
+    // "champ match" => [champ, match] => champ|match
+    let keywordRegex = keyword
+    if(keyword.split(' ').length > 1 ){
+      keywordRegex = keyword.split(' ').join('|')
+    }
+    keywordRegex = new RegExp(keywordRegex, "i")
+    let items = this.state.items.filter( (item) =>  item.description.match(keywordRegex) ? true : false )
+    this.setState({items})
   }
   componentWillMount(){
     fetch('items.json')
