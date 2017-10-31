@@ -9,46 +9,38 @@ import ItemsTradeContainer from './ItemsTradeContainer'
 class ExchangeContainer extends Component {
   state = {
     items: [],
-    categories: []
+    categories: [],
+    filteredItems: []
   }
   searchItems = (keyword) => {
-    let keywordRegex = keyword
-    if(keyword.split(' ').length > 1 ) keywordRegex = keyword.split(' ').join('|')
-    keywordRegex = new RegExp(keywordRegex, "i")
-    if(!this.state.items.length){
-      console.log("filter");
-      this.getItems()
-        .then( items => {
-          items = items.filter( (item) =>  item.description.match(keywordRegex) ? true : false )
-          this.setState({items})
-        })
-    }else{
-      let items = this.state.items.filter( (item) =>  item.description.match(keywordRegex) ? true : false )
-      this.setState({items})
+    if(keyword){
+      let keywordRegex = keyword
+      if(keyword.split(' ').length > 1 ) keywordRegex = keyword.split(' ').join('|')
+      keywordRegex = new RegExp(keywordRegex,"i")
+      let filteredItems = this.state.items.filter( item =>  item.description.match(keywordRegex) ? true : false )
+      this.setState({filteredItems})
     }
   }
-
-  getItems(){
-    return fetch('items.json')
-      .then( res => res.json())
+  categoriesFilter = (values) => {
+    console.log("coming from filter button", values)
+    let myCat = values.join('')
+    myCat = new RegExp(myCat, "i")
+    let filteredItems = this.state.items.filter( item =>  item.categories.join(' ').match(myCat) ? true : false )
+    this.setState({filteredItems})
   }
   componentWillMount(){
-    this.getItems()
-    .then( items => {
-      console.log("fetching", items)
-      this.setState({items})
-    })
-  }
-
-  componentDidMount () {
-    console.log('did mount')
+    fetch('items.json')
+      .then( res => res.json())
+      .then( items => {
+        this.setState({items, filteredItems: items})
+      })
   }
   render () {
-    console.log('rendering component')
+    console.log("render")
     return (
       <MuiThemeProvider >
-        <SearchContainer onSearch={this.searchItems}/>
-        <ItemsTradeContainer items={this.state.items}/>
+        <SearchContainer onSearch={this.searchItems} onCategory={this.categoriesFilter}/>
+        <ItemsTradeContainer items={this.state.filteredItems}/>
       </MuiThemeProvider>
     )
   }
