@@ -10,20 +10,21 @@ class ExchangeContainer extends Component {
   state = {
     items: [],
     categories: [],
+    filteredItems: []
   }
   searchItems = (keyword) => {
     let keywordRegex = keyword
     if(keyword.split(' ').length > 1 ) keywordRegex = keyword.split(' ').join('|')
     keywordRegex = new RegExp(keywordRegex, "i")
-    let items = this.state.items.filter( (item) =>  item.description.match(keywordRegex) ? true : false )
-    this.setState({items})
+    let filteredItems = this.state.items.filter( (item) =>  item.description.match(keywordRegex) ? true : false )
+    this.setState({filteredItems})
   }
   componentWillMount(){
     fetch('items.json')
       .then( res => res.json())
       .then( items => {
         console.log("fetching", items)
-        this.setState({items})
+        this.setState({items, filteredItems: items})
       })
       console.log('will mount')
   }
@@ -36,7 +37,7 @@ class ExchangeContainer extends Component {
     return (
       <MuiThemeProvider >
         <SearchContainer onSearch={this.searchItems}/>
-        <ItemsTradeContainer items={this.state.items}/>
+        <ItemsTradeContainer items={this.state.filteredItems}/>
       </MuiThemeProvider>
     )
   }

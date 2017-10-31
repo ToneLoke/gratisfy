@@ -7,15 +7,15 @@ const style = {
   width: '50%'
 }
 
+
+
+
+
 class ItemsTradeContainer extends Component {
-  constructor () {
-    super()
-    this.state = {
+  state = {
       selectedItem: {},
       filteredItems: []
     }
-  }
-
   componentWillReceiveProps (nextProps) {
     console.log('getting props from exchange')
     let newState = {
