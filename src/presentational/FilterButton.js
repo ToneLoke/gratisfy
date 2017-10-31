@@ -43,6 +43,7 @@ export default class FilterButton extends Component {
         hintText="Select a category"
         value={values}
         onChange={this.handleChange}
+        onAbort={()=> {console.log("blur", this.state.values)} }
       >
         {this.menuItems(values)}
       </SelectField>
