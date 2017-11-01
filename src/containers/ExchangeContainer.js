@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import SearchContainer from './SearchContainer'
 import ItemsTradeContainer from './ItemsTradeContainer'
@@ -12,6 +11,7 @@ class ExchangeContainer extends Component {
     categories: [],
     filteredItems: []
   }
+
   searchItems = (keyword) => {
     if(keyword){
       let keywordRegex = keyword
@@ -38,10 +38,10 @@ class ExchangeContainer extends Component {
   render () {
     console.log("render")
     return (
-      <MuiThemeProvider >
+      <div>
         <SearchContainer onSearch={this.searchItems} onCategory={this.categoriesFilter}/>
         <ItemsTradeContainer items={this.state.filteredItems}/>
-      </MuiThemeProvider>
+      </div>
     )
   }
 }
