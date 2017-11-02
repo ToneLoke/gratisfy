@@ -9,16 +9,9 @@ const styles = {
     boxShadow: '0px 0px 15px 0px'
   },
   container: {
-    position: 'relative',
     textAlign: 'center',
-    color: 'black',
-    fontSize: '.25em'
-  },
-  centered: {
-    position: 'absolute',
-    top: '17%',
-    left: '55%',
-    transform: 'translate(-50%, -50%)'
+    color: 'white',
+    fontSize: '2em'
   },
   parent: {
     textAlign: 'center'

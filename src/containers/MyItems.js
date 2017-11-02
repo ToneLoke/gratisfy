@@ -7,14 +7,12 @@ const styles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    width: '100%'
+    justifyContent: 'space-around'
   },
   gridList: {
     display: 'flex',
     flexWrap: 'nowrap',
-    overflowX: 'auto',
-    width: '100%'
+    overflowX: 'auto'
   },
   titleStyle: {
     color: 'rgb(0, 188, 212)'
@@ -27,6 +25,7 @@ const UserItemSlider = (props) => {
       <GridList style={styles.gridList} cols={2.2}>
         {props.items.map((item) => (
           <GridTile
+            data-info={JSON.stringify(item)}
             key={item.imageURL}
             title={item.name}
             titleStyle={styles.titleStyle}

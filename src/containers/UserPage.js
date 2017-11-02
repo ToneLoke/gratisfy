@@ -41,7 +41,7 @@ const styles = {
   boxC: {
     height: '390px',
     padding: '15px',
-    paddingTop: '50px',
+    paddingTop: '10px',
     borderRadius: '10px',
     backgroundColor: 'grey',
   },
