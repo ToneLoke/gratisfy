@@ -4,44 +4,66 @@ import FlatButton from 'material-ui/FlatButton'
 import AddIcon from 'material-ui/svg-icons/content/add';
 
 
-class ItemForm extends  Component{
+const styles = {
+  colorButton: {
+    fontSize: '1.2rem',
+    width: '40%',
+    color: 'lightgrey'
+  },
+  itemName: {
+    width: '30%',
+  }
+};
+
+class ItemForm extends Component{
   state = {
-    newItem:{
       name: "",
       description: "",
       price: 0,
       color: "",
       imageURL: "",
       categories: []
-    }
   }
 
   handleChange = (e) => {
-
+    this.setState({[e.target.name]: e.target.value})
+  }
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.onAddItem(this.state)
+    this.setState({
+        name: "",
+        description: "",
+        price: 0,
+        color: "",
+        imageURL: "",
+        categories: []
+    })
   }
 
   render(){
     return(
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <div>
-          <input name="name" type="text"/>
+          <input onChange={this.handleChange} style={styles.itemName} name="name" type="text" placeholder="Item Name"/>
         </div>
         <div>
-          <textarea name="description" rows="4" cols="50" />
+          <textarea onChange={this.handleChange} name="description" rows="4" cols="50" placeholder="Item Description" />
         </div>
         <div>
-          <input name="price" type="number"/>
+          <input onChange={this.handleChange} name="price" type="number" placeholder="Price"/>
+        </div>
+        <div style={styles.colorButton}>
+          Color:<input onChange={this.handleChange} name="color" type="color"/>
         </div>
         <div>
-          <input name="color" type="color"/>
-        </div>
-        <div>
-          <input name="imageURL" type="image"/>
+          <input onChange={this.handleChange} name="imageURL" type="text" placeholder="Image URL"/>
         </div>
         <div>
           <Categories />
         </div>
         <FlatButton
+          type='submit'
           secondary={true}
           icon={<AddIcon />}
         />

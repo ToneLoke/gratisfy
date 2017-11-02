@@ -1,1 +1,14 @@
 
+input {
+  width: 10%;
+  font-size: 1.2rem;
+}
+textarea {
+  font-size: 1.2rem;
+}
+*{
+  box-sizing: border-box;
+}
+body {
+  background-color: darkgrey;
+}
