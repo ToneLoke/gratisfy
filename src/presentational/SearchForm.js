@@ -11,6 +11,9 @@ class SearchForm extends Component {
   handleChange = (e) => {
     this.setState({searchTerm: e.target.value})
   }
+  sendSearchTerm = () => {
+    this.props.handleClick(this.state.searchTerm)
+  }
   render(){
     return (
       <div>
@@ -20,7 +23,7 @@ class SearchForm extends Component {
         />
         <RaisedButton
           target='_blank'
-          onClick={() => this.props.handleClick(this.state.searchTerm)}
+          onClick={this.sendSearchTerm}
           secondary
           icon={<SearchIcon color={fullWhite} />}
         />

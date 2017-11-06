@@ -7,14 +7,16 @@ import FlatButton from 'material-ui/FlatButton';
 import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import {Link} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom'
+import LoginForm from '../presentational/LoginForm'
+
 
 class Login extends Component {
   static muiName = 'FlatButton';
 
   render() {
     return (
-      <FlatButton {...this.props} label="Login" />
+      <Link to="login"><FlatButton {...this.props} label="Login" /></Link>
     );
   }
 }
@@ -42,11 +44,11 @@ Logged.muiName = 'IconMenu';
  */
 class AppBarExampleComposition extends Component {
   state = {
-    logged: true,
+    logged: false,
   };
 
-  handleChange = (event, logged) => {
-    this.setState({logged: logged});
+  handleChange = (logged) => {
+    this.setState({logged});
   };
 
   render() {
@@ -57,6 +59,9 @@ class AppBarExampleComposition extends Component {
           iconElementLeft={<IconButton><NavigationClose /></IconButton>}
           iconElementRight={this.state.logged ? <Logged /> : <Login />}
         />
+        <Route path='/login' component={() => (
+          <LoginForm updateLogin={this.handleChange} loggedIn={this.state.logged} />
+        )} />
       </div>
     );
   }

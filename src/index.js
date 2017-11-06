@@ -17,6 +17,7 @@ const App = () => (
       <Route path='/' component={Home} />
       <Route path='/userprofile' component={UserPage} />
       <Route path='/exchange' component={Exchange} />
+
     </MuiThemeProvider>
   </Router>
 )

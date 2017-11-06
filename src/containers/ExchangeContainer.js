@@ -29,9 +29,11 @@ class ExchangeContainer extends Component {
     this.setState({filteredItems})
   }
   componentWillMount(){
+    console.log("started mounting")
     fetch('items.json')
       .then( res => res.json())
       .then( items => {
+        console.log("finished my fetch async call");
         this.setState({items, filteredItems: items})
       })
   }
