@@ -17,8 +17,8 @@ const styles = {
   },
   userPage: {
     display: 'grid',
-    gridTemplateColumns: '1fr 2fr',
-    gridTemplateRows: '1fr 1fr',
+    gridTemplateColumns: '4fr',
+    gridTemplateRows: '4fr',
     gridGap: '10px',
     width: '80%',
     margin: '0 auto'
@@ -84,7 +84,6 @@ render() {
       <div style={styles.boxB}><OfferList offeringData={this.state.userOffers}/></div>
       <div style={styles.boxC}><ItemForm onAddItem={this.addItemToUser}/></div>
       <div style={styles.boxD}><UserItemSlider items={this.state.userItems}  /></div>
-
     </div>
   )
 }

@@ -6,8 +6,6 @@ import ItemsList from '../presentational/ItemsSlider'
 const style = {
   width: '50%'
 }
-
-
 class ItemsTradeContainer extends Component {
   state = {
       selectedItem: {},
@@ -22,7 +20,6 @@ class ItemsTradeContainer extends Component {
     this.setState({...newState})
   }
   shouldComponentUpdate(nextProps, nextState){
-
     return Object.is(this.props, nextProps)  ? false : true
   }
   render () {
@@ -30,7 +27,6 @@ class ItemsTradeContainer extends Component {
     return (
       <div style={style}>
         <ItemDetail item={this.state.selectedItem} name="blah" />
-        {/* { this.state.selectedItem ? <ItemDetail item={this.state.selectedItem} /> : <h2>No Items Found matching your search</h2> } */}
         <ItemsList items={this.state.filteredItems} />
       </div>
     )

@@ -7,13 +7,12 @@ import FlatButton from 'material-ui/FlatButton';
 import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import {Link, Route} from 'react-router-dom'
+import {Link, Route, Redirect} from 'react-router-dom'
 import LoginForm from '../presentational/LoginForm'
-
+import About from './About'
 
 class Login extends Component {
   static muiName = 'FlatButton';
-
   render() {
     return (
       <Link to="login"><FlatButton {...this.props} label="Login" /></Link>
@@ -30,9 +29,10 @@ const Logged = (props) => (
     targetOrigin={{horizontal: 'right', vertical: 'top'}}
     anchorOrigin={{horizontal: 'right', vertical: 'top'}}
   >
+    <Link to="/" ><MenuItem primaryText="Home" /></Link>
     <Link to="/userprofile" ><MenuItem primaryText="Profile" /></Link>
     <Link to="/exchange" ><MenuItem primaryText="Exchange Center" /></Link>
-    <MenuItem primaryText="Sign out" />
+    <MenuItem onClick={props.logOut} primaryText="Sign out" />
   </IconMenu>
 );
 
@@ -47,7 +47,8 @@ class AppBarExampleComposition extends Component {
     logged: false,
   };
 
-  handleChange = (logged) => {
+  handleChange = () => {
+    let logged = !this.state.logged
     this.setState({logged});
   };
 
@@ -55,13 +56,13 @@ class AppBarExampleComposition extends Component {
     return (
       <div>
         <AppBar
-          title="Title"
+          title="Gratisfy"
           iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-          iconElementRight={this.state.logged ? <Logged /> : <Login />}
+          iconElementRight={this.state.logged ? <Logged logOut={this.handleChange}/> : <Login />}
         />
-        <Route path='/login' component={() => (
-          <LoginForm updateLogin={this.handleChange} loggedIn={this.state.logged} />
-        )} />
+        {this.state.logged ? <Redirect to='/userprofile' /> : <Redirect to='/home' /> }
+        <Route path='/login' render={() => (<LoginForm updateLogin={this.handleChange} loggedIn={this.state.logged} />)} />
+        <Route path='/home' exact component={About} />
       </div>
     );
   }

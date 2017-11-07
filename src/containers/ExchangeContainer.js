@@ -1,9 +1,23 @@
 import React, {Component} from 'react'
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import SearchContainer from './SearchContainer'
 import ItemsTradeContainer from './ItemsTradeContainer'
-
+import SearchForm from '../presentational/SearchForm'
+import FilterButton from '../presentational/FilterButton'
+const styles = {
+  itemDetail: {
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+    gridTemplateRows: '1fr',
+    gridGap: '10px',
+    width: '80%',
+    margin: '0 auto'
+  },
+  box: {
+    borderRadius: '10px',
+    backgroundColor: 'grey',
+  },
+}
 
 class ExchangeContainer extends Component {
   state = {
@@ -22,27 +36,28 @@ class ExchangeContainer extends Component {
     }
   }
   categoriesFilter = (values) => {
-    console.log("coming from filter button", values)
     let myCat = values.join('')
     myCat = new RegExp(myCat, "i")
     let filteredItems = this.state.items.filter( item =>  item.categories.join(' ').match(myCat) ? true : false )
     this.setState({filteredItems})
   }
   componentWillMount(){
-    console.log("started mounting")
     fetch('items.json')
       .then( res => res.json())
       .then( items => {
-        console.log("finished my fetch async call");
         this.setState({items, filteredItems: items})
       })
   }
   render () {
-    console.log("render")
     return (
-      <div>
-        <SearchContainer onSearch={this.searchItems} onCategory={this.categoriesFilter}/>
-        <ItemsTradeContainer items={this.state.filteredItems}/>
+      <div style={styles.itemDetail} >
+        <div style={styles.box}>
+          <SearchForm handleClick={this.searItems} />
+          <FilterButton />
+        </div>
+        <div style={styles.box}>
+          <ItemsTradeContainer items={this.state.filteredItems}/>
+        </div>
       </div>
     )
   }

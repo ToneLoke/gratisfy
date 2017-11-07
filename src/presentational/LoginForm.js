@@ -19,8 +19,8 @@ class LoginForm extends Component {
   }
   submitLogin = (e) => {
     window.localStorage.setItem('username', this.state.username)
-    let flipLogged = !this.props.loggedIn
-    this.props.updateLogin(flipLogged)
+    this.props.updateLogin()
+    this.route.history.location.push('/userprofile')
   }
   render(){
     return(
