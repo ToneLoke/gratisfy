@@ -48,6 +48,13 @@ class ExchangeContainer extends Component {
         this.setState({items, filteredItems: items})
       })
   }
+  addItemToFavorite = (item) =>{
+    console.log("you are adding a favorite", item)
+    this.props.history.push({
+      pathname: '/userprofile',
+      state: {item}
+    })
+  }
   render () {
     return (
       <div style={styles.itemDetail} >
@@ -56,7 +63,7 @@ class ExchangeContainer extends Component {
           <FilterButton />
         </div>
         <div style={styles.box}>
-          <ItemsTradeContainer items={this.state.filteredItems}/>
+          <ItemsTradeContainer addItem={this.addItemToFavorite} items={this.state.filteredItems}/>
         </div>
       </div>
     )

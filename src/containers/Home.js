@@ -10,6 +10,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import {Link, Route, Redirect} from 'react-router-dom'
 import LoginForm from '../presentational/LoginForm'
 import About from './About'
+import PropTypes from 'prop-types'
 
 class Login extends Component {
   static muiName = 'FlatButton';

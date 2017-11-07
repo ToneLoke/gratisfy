@@ -68,7 +68,7 @@ class UserPage extends Component {
      approved: [{
        name: "broom stick"
      }],
-     favorite: [{
+     favorites: [{
        name: "broom stick"
      }]
    }
@@ -76,8 +76,18 @@ class UserPage extends Component {
  addItemToUser = (item) => {
   this.setState({userItems: [...this.state.userItems, item]})
  }
+  addItemToCurrentUser(){
+    if(this.props.location.state){
+      let {item} = this.props.location.state
+      this.props.location.state = null
+      let userOffers= {...this.state.userOffers }
+      userOffers.favorites.push(item)
+      this.setState({userOffers})
+    }
+ }
 
 render() {
+  this.addItemToCurrentUser()
   return(
     <div style={styles.userPage}>
       <div style={styles.boxA}><UserInfo style={styles.gridList} profileData={this.state.userData} /></div>

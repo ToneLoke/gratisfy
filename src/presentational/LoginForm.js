@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
+import PropTypes from 'prop-types'
 
 const styles = {
   backgroundColor: 'white',
@@ -14,13 +15,16 @@ class LoginForm extends Component {
     username: '',
     password: ''
   }
+  static contextTypes = {
+    router: PropTypes.object
+  }
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value})
   }
   submitLogin = (e) => {
     window.localStorage.setItem('username', this.state.username)
+    // this.context.router.history.push('/exchange')
     this.props.updateLogin()
-    this.route.history.location.push('/userprofile')
   }
   render(){
     return(

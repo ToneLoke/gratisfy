@@ -22,12 +22,13 @@ class ItemsTradeContainer extends Component {
   shouldComponentUpdate(nextProps, nextState){
     return Object.is(this.props, nextProps)  ? false : true
   }
+
   render () {
     console.log("items container render")
     return (
       <div style={style}>
         <ItemDetail item={this.state.selectedItem} name="blah" />
-        <ItemsList items={this.state.filteredItems} />
+        <ItemsList items={this.state.filteredItems} addItemToFav={this.props.addItem} />
       </div>
     )
   }
