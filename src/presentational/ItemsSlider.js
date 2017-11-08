@@ -24,13 +24,13 @@ const ItemsList = (props) => (
     <GridList style={styles.gridList} cols={2.2}>
       {props.items.map((item) => (
         <GridTile
-          key={item.imageURL}
+          key={item.imageUrl}
           title={item.name}
           actionIcon={<IconButton onClick={() => { props.addItemToFav(item) }}><StarBorder color='rgb(0, 188, 212)' /></IconButton>}
           titleStyle={styles.titleStyle}
           titleBackground='linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)'
         >
-          <img src={item.imageURL} />
+          <img src={item.imageUrl} />
         </GridTile>
       ))}
     </GridList>

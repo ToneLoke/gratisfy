@@ -42,9 +42,10 @@ class ExchangeContainer extends Component {
     this.setState({filteredItems})
   }
   componentWillMount(){
-    fetch('items.json')
+    fetch('http://localhost:3000/api/v1/items')
       .then( res => res.json())
       .then( items => {
+        console.log("from server",items)
         this.setState({items, filteredItems: items})
       })
   }

@@ -12,7 +12,7 @@ const ItemDetail = ({item}) => {
     <CardMedia
       overlay={<CardTitle title={item.name} subtitle={item.color} />}
     >
-      <img src={item.imageURL} alt='' />
+      <img src={item.imageUrl} alt='' />
     </CardMedia>
 
     <CardText>
