@@ -12,7 +12,7 @@ class ItemsTradeContainer extends Component {
       filteredItems: []
     }
   componentWillReceiveProps (nextProps) {
-    console.log('getting props from exchange')
+    console.log('getting props from exchange', nextProps.items[0])
     let newState = {
       selectedItem: nextProps.items[0],
       filteredItems: nextProps.items.slice(1, nextProps.items.length)
@@ -27,7 +27,7 @@ class ItemsTradeContainer extends Component {
     console.log("items container render")
     return (
       <div style={style}>
-        <ItemDetail item={this.state.selectedItem} name="blah" />
+        { Object.keys(this.state.selectedItem).length === 0 ? null : <ItemDetail item={this.state.selectedItem}  /> }
         <ItemsList items={this.state.filteredItems} addItemToFav={this.props.addItem} />
       </div>
     )

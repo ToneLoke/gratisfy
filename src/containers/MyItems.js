@@ -26,12 +26,12 @@ const UserItemSlider = (props) => {
         {props.items.map((item) => (
           <GridTile
             data-info={JSON.stringify(item)}
-            key={item.imageURL}
+            key={item.imageUrl}
             title={item.name}
             titleStyle={styles.titleStyle}
             titleBackground='linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)'
           >
-            <img src={item.imageURL} />
+            <img src={item.imageUrl} />
           </GridTile>
         ))}
       </GridList>

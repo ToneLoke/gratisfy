@@ -65,7 +65,15 @@ class UserPage extends Component {
   myItems: []
  }
  addItemToUser = (item) => {
-  this.setState({userItems: [...this.state.userItems, item]})
+  fetch('http://localhost:3000/api/v1/items', {
+    method: 'POST',
+    headers: {'content-type': 'application/json', 'x-access-token': window.localStorage.getItem('token')},
+    body: JSON.stringify(item)
+  })
+  .then( res => res.json())
+  .then( user => {
+    this.setState(user)
+  })
  }
  addItemToCurrentUser(){
     if(this.props.location.state){

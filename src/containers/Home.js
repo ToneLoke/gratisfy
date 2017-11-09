@@ -52,8 +52,13 @@ class AppBarExampleComposition extends Component {
       open: false,
     })
   }
+  componentWillMount(){
+    if(localStorage.getItem('token')){
+      this.setState({logged: true})
+    }
+  }
   handleLogin = (userInfo) => {
-    if(!userInfo){ 
+    if(!userInfo){
       this.setState({logged: false})
     }else{
       fetch('http://localhost:3000/api/v1/login',

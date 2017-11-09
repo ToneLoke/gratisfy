@@ -23,7 +23,7 @@ class ItemForm extends Component{
       description: "",
       price: 0,
       color: "",
-      imageURL: "",
+      imageUrl: "",
       categories: []
   }
 
