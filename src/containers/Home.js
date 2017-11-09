@@ -34,7 +34,7 @@ const Logged = (props) => (
     <Link to="/" ><MenuItem primaryText="Home" /></Link>
     <Link to="/userprofile" ><MenuItem primaryText="Profile" /></Link>
     <Link to="/exchange" ><MenuItem primaryText="Exchange Center" /></Link>
-    <MenuItem onClick={props.logOut} primaryText="Sign out" />
+    <MenuItem onClick={() => {props.logOut(false)}} primaryText="Sign out" />
   </IconMenu>
 );
 
@@ -53,25 +53,30 @@ class AppBarExampleComposition extends Component {
     })
   }
   handleLogin = (userInfo) => {
-    fetch('http://localhost:3000/api/v1/login',
-    {
-      method: "POST",
-      headers: {"content-type": "application/json"},
-      body: JSON.stringify(userInfo)
-    })
-    .then( res => res.json() )
-    .then( data => {
-      if(data.valid){
-        window.localStorage.setItem('username', userInfo.username)
-        window.localStorage.setItem('token', data.token)
-        this.setState({message: data.message, open: true, logged: true})
-      }else{
-        this.setState({message: data.message, open: true})
-      }
-    })
-    .catch( err => {
+    if(!userInfo){ 
+      this.setState({logged: false})
+    }else{
+      fetch('http://localhost:3000/api/v1/login',
+      {
+        method: "POST",
+        headers: {"content-type": "application/json"},
+        body: JSON.stringify(userInfo)
+      })
+      .then( res => res.json() )
+      .then( data => {
+        if(data.valid){
+          window.localStorage.setItem('username', userInfo.username)
+          window.localStorage.setItem('token', data.token)
+          this.setState({message: data.message, open: true, logged: true})
+        }else{
+          this.setState({message: data.message, open: true})
+        }
+      })
+      .catch( err => {
         this.setState({message: err.message, open: true})
-    })
+      })
+
+    }
   }
   render() {
     return (
@@ -85,7 +90,7 @@ class AppBarExampleComposition extends Component {
         <AppBar
           title="Gratisfy"
           iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-          iconElementRight={this.state.logged ? <Logged logOut={this.handleChange}/> : <Login />}
+          iconElementRight={this.state.logged ? <Logged logOut={this.handleLogin}/> : <Login />}
         />
         {this.state.logged ? <Redirect to='/userprofile' /> : <Redirect to='/home' /> }
         <Route path='/login' render={() => (<LoginForm updateLogin={this.handleLogin} loggedIn={this.state.logged} />)} />

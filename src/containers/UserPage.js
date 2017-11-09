@@ -55,28 +55,19 @@ const styles = {
 
 class UserPage extends Component {
  state = {
-   userItems : [],
-   userData : {
-     userName: 'toneloke',
-     imageURL: 'https://avatars0.githubusercontent.com/u/10687151?s=460&v=4',
-     email: 'toneloke@toneloke.com'
-   },
-   userOffers : {
-     pending: [{
-       name: "broom stick"
-     }],
-     approved: [{
-       name: "broom stick"
-     }],
-     favorites: [{
-       name: "broom stick"
-     }]
-   }
+  username: '',
+  firstName: '',
+  lastName: '',
+  picUrl: '',
+  favorites: [],
+  approved: [],
+  pending: [],
+  myItems: []
  }
  addItemToUser = (item) => {
   this.setState({userItems: [...this.state.userItems, item]})
  }
-  addItemToCurrentUser(){
+ addItemToCurrentUser(){
     if(this.props.location.state){
       let {item} = this.props.location.state
       this.props.location.state = null
@@ -85,15 +76,33 @@ class UserPage extends Component {
       this.setState({userOffers})
     }
  }
-
+ componentWillMount(){
+   let token = window.localStorage.getItem('token')
+   if(token){
+     fetch('http://localhost:3000/api/v1/me',{
+       method: 'GET',
+       headers: { "content-type": "application/json", "x-access-token": token}
+     })
+     .then( res => res.json())
+     .then( userInfo => {
+       console.log("user be loggin in bro", userInfo)
+       this.setState(userInfo)
+     })
+   }else{
+     this.props.history.push('/home')
+   }
+ }
 render() {
   this.addItemToCurrentUser()
+  let {username, firstName, lastName, picUrl, favorites, approved, pending} = this.state
+  let userData = { username, firstName, lastName, picUrl }
+  let userOffers = { favorites, approved, pending}
   return(
     <div style={styles.userPage}>
-      <div style={styles.boxA}><UserInfo style={styles.gridList} profileData={this.state.userData} /></div>
-      <div style={styles.boxB}><OfferList offeringData={this.state.userOffers}/></div>
+      <div style={styles.boxA}><UserInfo style={styles.gridList} profileData={userData} /></div>
+      <div style={styles.boxB}><OfferList offeringData={userOffers}/></div>
       <div style={styles.boxC}><ItemForm onAddItem={this.addItemToUser}/></div>
-      <div style={styles.boxD}><UserItemSlider items={this.state.userItems}  /></div>
+      <div style={styles.boxD}><UserItemSlider items={this.state.myItems}  /></div>
     </div>
   )
 }

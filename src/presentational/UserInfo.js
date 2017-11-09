@@ -22,8 +22,8 @@ const UserInfo = ({profileData}) => {
   return (
     <div style={styles.parent}>
       <div style={styles.container}>
-        <img style={styles.userImage} src={profileData.imageURL} />
-        <div style={styles.centered}>{profileData.userName}</div>
+        <img style={styles.userImage} src={profileData.picUrl} />
+        <div style={styles.centered}>{profileData.username}</div>
       </div>
     </div>
   )
