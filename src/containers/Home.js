@@ -5,12 +5,13 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import Toggle from 'material-ui/Toggle';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
+import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import {Link, Route, Redirect} from 'react-router-dom'
 import LoginForm from '../presentational/LoginForm'
 import About from './About'
 import PropTypes from 'prop-types'
+import Snackbar from 'material-ui/Snackbar'
 
 class Login extends Component {
   static muiName = 'FlatButton';
@@ -37,35 +38,60 @@ const Logged = (props) => (
   </IconMenu>
 );
 
-Logged.muiName = 'IconMenu';
+Logged.muiName = 'IconMenu'
 
-/**
- * This example is taking advantage of the composability of the `AppBar`
- * to render different components depending on the application state.
- */
 class AppBarExampleComposition extends Component {
   state = {
     logged: false,
-  };
-
-  handleChange = () => {
-    let logged = !this.state.logged
-    this.setState({logged});
-  };
-
+    message: '',
+    autoHideDuration: 4000,
+    open: false
+  }
+  handleRequestClose = () => {
+    this.setState({
+      open: false,
+    })
+  }
+  handleLogin = (userInfo) => {
+    fetch('http://localhost:3000/api/v1/login',
+    {
+      method: "POST",
+      headers: {"content-type": "application/json"},
+      body: JSON.stringify(userInfo)
+    })
+    .then( res => res.json() )
+    .then( data => {
+      if(data.valid){
+        window.localStorage.setItem('username', userInfo.username)
+        window.localStorage.setItem('token', data.token)
+        this.setState({message: data.message, open: true, logged: true})
+      }else{
+        this.setState({message: data.message, open: true})
+      }
+    })
+    .catch( err => {
+        this.setState({message: err.message, open: true})
+    })
+  }
   render() {
     return (
       <div>
+        <Snackbar
+          open={this.state.open}
+          message={this.state.message}
+          autoHideDuration={this.state.autoHideDuration}
+          onRequestClose={this.handleRequestClose}
+        />
         <AppBar
           title="Gratisfy"
           iconElementLeft={<IconButton><NavigationClose /></IconButton>}
           iconElementRight={this.state.logged ? <Logged logOut={this.handleChange}/> : <Login />}
         />
         {this.state.logged ? <Redirect to='/userprofile' /> : <Redirect to='/home' /> }
-        <Route path='/login' render={() => (<LoginForm updateLogin={this.handleChange} loggedIn={this.state.logged} />)} />
+        <Route path='/login' render={() => (<LoginForm updateLogin={this.handleLogin} loggedIn={this.state.logged} />)} />
         <Route path='/home' exact component={About} />
       </div>
-    );
+    )
   }
 }
 

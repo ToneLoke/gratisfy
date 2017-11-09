@@ -11,7 +11,7 @@ const styles = {
 
 }
 class LoginForm extends Component {
-  state ={
+  state = {
     username: '',
     password: ''
   }
@@ -22,9 +22,7 @@ class LoginForm extends Component {
     this.setState({ [e.target.name]: e.target.value})
   }
   submitLogin = (e) => {
-    window.localStorage.setItem('username', this.state.username)
-    // this.context.router.history.push('/exchange')
-    this.props.updateLogin()
+    this.props.updateLogin(this.state)
   }
   render(){
     return(
@@ -42,7 +40,7 @@ class LoginForm extends Component {
           floatingLabelText='Password'
           type='password'
         />
-        <FlatButton label='Log In' primary onClick={this.submitLogin}/>
+        <FlatButton label='Log In' primary onClick={(this.submitLogin)}/>
       </div>
     )
   }
